@@ -6,7 +6,6 @@ django.setup()
 
 from rango.models import Category, Page
 
-
 def populate():
     python_cat = add_cat('Python', 128, 64)
 
@@ -40,13 +39,13 @@ def populate():
 
     add_page(cat=frame_cat,
         title="Bottle",
-        url="http://bottlepy.org/docs/dev/")
+        url="http://bottlepy.org/docs/dev/",
+        views=5)
 
     add_page(cat=frame_cat,
         title="Flask",
         url="http://flask.pocoo.org")
 
-    # Print out what we have added to the user.
     for c in Category.objects.all():
         for p in Page.objects.filter(category=c):
             print "- {0} - {1}".format(str(c), str(p))
@@ -65,7 +64,6 @@ def add_cat(name, views, likes):
     c.save()
     return c
 
-# Start execution here!
 if __name__ == '__main__':
     print "Starting Rango population script..."
     populate()
