@@ -44,6 +44,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',)
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+SESSION_COOKIE_AGE = 1209600
+
 ROOT_URLCONF = 'tango_with_django_project.urls'
 WSGI_APPLICATION = 'tango_with_django_project.wsgi.application'
 
