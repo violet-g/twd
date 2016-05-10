@@ -36,6 +36,8 @@ def about(request):
         count = 0
     return render(request, 'rango/about.html', {'visits': count})
 
+
+"""
 def register(request):
     registered = False
     if request.method == 'POST':
@@ -59,7 +61,9 @@ def register(request):
     return render(request,
             'rango/register.html',
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
+"""
 
+"""
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -76,22 +80,25 @@ def user_login(request):
             return HttpResponse("Invalid login details supplied.")
     else:
         return render(request, 'rango/login.html', {})
+"""
 
 @login_required
 def restricted(request):
     return render(request, 'rango/restricted.html', {})
 
+"""
 @login_required
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/rango/')
+"""
 
 def category(request, category_name_slug):
     context_dict = {}
     try:
         category = Category.objects.get(slug=category_name_slug)
         context_dict['category_name'] = category.name
-        pages = Page.objects.filter(category=category)
+        pages = Page.objects.filter(category=category).order_by('-views')
         context_dict['pages'] = pages
         context_dict['category'] = category
     except Category.DoesNotExist:
